@@ -3,9 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Store</title>
+    <style>
+        body{
+            padding: 10px;
+            margin: 15px;
+            align-items: center;
+            font-family: Roboto, sans-serif;
+        }
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+            margin-top: 25px;
+        }
+        .item {
+            border: 1px solid #ccc;
+            border-radius: 5%;
+            padding: 10px;
+            width: 200px;
+            text-align: center;
+        }
+        .item img {
+            max-width: 100%;
+            height: auto;
+        }
+        #searchInput {
+            padding: 8px;
+            width: 200px;
+            margin-right: 10px;
+        }
+        #searchButton {
+            padding: 8px 16px;
+        }
+        .loading-bar {
+            /* width: 100%;
+            height: 4px; */
+            background: linear-gradient(90deg, #4caf50, #81c784);
+            animation: loading 2s infinite;
+            width:75%; 
+            height: 10px; 
+            background-color: lightgray; 
+            border: 3px solid silver; 
+            border-radius: 5px;
+            animation:  duration timing-function delay iteration-count direction fill-mode;
+        }
+        
+    </style>
+    <script src="script.js" defer></script>
 </head>
 <body>
-    
+    <h1>Product List</h1>
+    <div>
+        <input type="text" id="searchInput" placeholder="Search products...">
+        <button id="searchButton">Search</button>
+    </div>
+    <div class="product-list" > 
+        <!-- Products will be dynamically inserted here -->
+    </div>
+    <!-- <div class="loading-bar" 
+    style=""></div> -->
 </body>
 </html>
