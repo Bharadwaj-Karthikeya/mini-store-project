@@ -1,26 +1,20 @@
-let products = document.querySelectorAll('.product-list');
+const itemsContainer = document.querySelector('.product-list');
+const prevPageButton = document.getElementById('prevPageButton');
+const nextPageButton = document.getElementById('nextPageButton');
+const pageNumbers = document.getElementById('pageNumbers');
+
+const itemsPerPage = 8;
+let currentPage = 1;
+let items = [];
 
 fetch("https://dummyjson.com/products")
 .then(res => res.json())
 .then(data => {
-    data.products.forEach(product => {
-        products.forEach(productList => {
-            let productItem = document.createElement('div');
-            productItem.classList.add('item');
-            productItem.innerHTML = `
-                <img src="${product.thumbnail}" alt="${product.title}" />
-                <h3>${product.title}</h3>
-                <p>Price: $${product.price}</p>
-                <p>Rating: ${product.rating}</p>
-            `;
-            productList.appendChild(productItem);
-            productItem.addEventListener("click", () => {
-                console.log(product.id, "clicked");
-                window.location.href = `product.html?id=${product.id}`;
-            });
-        });
-       
-    });
+    items = Array.isArray(data.products) ? data.products : [];
+    renderPagination();
+})
+.catch(err => {
+    console.error("Failed to load products", err);
 });
 
 const searchBtn = document.getElementById('searchButton');
@@ -69,4 +63,62 @@ searchInput.addEventListener('input', () => {
             searchBtn.click();
         });
     });
+});
+
+
+function renderPagination(){
+    if (!itemsContainer) {
+        return;
+    }
+
+    const totalPages = Math.max(1, Math.ceil(items.length / itemsPerPage));
+    if (currentPage < 1) {
+        currentPage = 1;
+    }
+    if (currentPage > totalPages) {
+        currentPage = totalPages;
+    }
+
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const paginatedItems = items.slice(start, end);
+
+    itemsContainer.innerHTML = '';
+    paginatedItems.forEach(item => {
+        const itemElement = document.createElement('div');
+        itemElement.classList.add('item');
+        itemElement.innerHTML = `
+            <img src="${item.thumbnail}" alt="${item.title}" />
+            <h3>${item.title}</h3>
+            <p>Price: $${item.price}</p>
+            <p>Rating: ${item.rating}</p>
+        `;
+        itemElement.addEventListener("click", () => {
+            window.location.href = `product.html?id=${item.id}`;
+            
+        });
+
+        itemsContainer.appendChild(itemElement);
+    });
+
+    pageNumbers.textContent = `Page ${currentPage} of ${totalPages}`;
+    prevPageButton.disabled = currentPage === 1;
+    nextPageButton.disabled = currentPage === totalPages;
+};
+
+prevPageButton.addEventListener("click", () => {
+    if (currentPage > 1) {
+        currentPage--;
+        renderPagination();
+        window.scrollTo({top: 20, behavior:"smooth"});
+    }
+});
+
+nextPageButton.addEventListener("click", () => {
+    const totalPages = Math.max(1, Math.ceil(items.length / itemsPerPage));
+    if (currentPage < totalPages) {
+        currentPage++;
+        renderPagination();
+        window.scrollTo({top: 20, behavior:"smooth"});
+    }
 });

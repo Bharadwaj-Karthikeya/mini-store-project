@@ -8,22 +8,23 @@ body{
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin-top: 25px;
+    margin-left: 150px;
 }
 .item {
     border: 1px solid #ccc;
     border-radius: 5%;
     padding: 10px 20px;
     width: 250px;
-}
-.item h3{
+    justify-content: center;
     text-align: center;
 }
+
 .item img {
-    max-width: 100%;
-    height: auto;
+    max-width: 80%;
+    max-height: 60%;
 }
 #searchInput {
     padding: 8px;
@@ -32,6 +33,24 @@ body{
 }
 #searchButton {
     padding: 8px 16px;
+}
+.pagination-controls {
+    margin-top: 20px;
+    text-align: center;
+}
+#pageNumbers {
+    margin: 0 10px;
+    font-weight: bold;
+}
+#prevPageButton, #nextPageButton {
+    padding: 8px 16px;
+    margin: 0 5px;
+    cursor: pointer;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+
 }
 .suggestion-item {
     padding : 4px 8px;
