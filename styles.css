@@ -57,11 +57,17 @@ nav button {
     width: 250px;
     justify-content: center;
     text-align: center;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
 }
 
+.item:hover {
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+}
 .item img {
     max-width: 80%;
-    max-height: 60%;
+    /* max-height: 60%; */
+    height: 60%;
 }
 #searchInput {
     padding: 8px;
@@ -115,7 +121,7 @@ nav button {
 }
 .time{
     text-align: left;
-    font-size: 20px;
+    font-size: 16px;
     color:#666;
 }
 .history-list{
@@ -134,7 +140,6 @@ nav button {
 }
 #clearHistoryButton{
     padding: 8px 16px;
-    margin-top: 20px;
 }
 
 .container{
@@ -149,7 +154,7 @@ nav button {
     background-color: #f5f5f5;
 }
 .container img{
-    width: 700px;
+    width: 100%;
     height: auto;
     max-height: 500px;
 }
