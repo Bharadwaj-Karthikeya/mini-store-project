@@ -1,10 +1,47 @@
 body{
-    padding: 10px;
-    margin: 15px;
+    margin: 0;
     align-items: center;
     font-family: Roboto, sans-serif;
+    padding-bottom: 50px;
+}
+nav{
+    
+    margin-bottom: 15px;
+    padding: 20px 50px;
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #bbebff;
+    position: sticky;
+    top: 0;
+}
+nav h1 {
+    margin: 0;
+    font-size: 24px;
+}
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+nav button {
+    cursor: pointer;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
 }
 .product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 25px;
+    margin-left: 150px;
+}
+.view-list {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
@@ -30,9 +67,18 @@ body{
     padding: 8px;
     width: 300px;
     margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    height: 20px;
 }
 #searchButton {
-    padding: 8px 16px;
+    padding: 10px 16px;
+    cursor: pointer;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
 }
 .pagination-controls {
     margin-top: 20px;
@@ -91,18 +137,18 @@ body{
 }
 
 .container{
-    max-width: 75%;
+    width : 80%;
     display: flex;
     margin-top: 20px;
     border: #666 solid 1px;
     justify-self: center;
-    height: 700px;
+    height: auto;
     border-radius: .5rem;
     padding: 20px;
     background-color: #f5f5f5;
 }
 .container img{
-    max-width: 500px;
+    width: 700px;
     height: auto;
     max-height: 500px;
 }

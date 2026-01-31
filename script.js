@@ -25,6 +25,10 @@ searchBtn.addEventListener('click', () => {
     
     let history = JSON.parse(localStorage.getItem('searchHistory')) || [];
 
+    if (!query) {
+        return;
+    }
+
     const exists = history.some(item => item.query.toLowerCase() === query.toLowerCase());
     
     if (!exists) {
@@ -93,7 +97,18 @@ function renderPagination(){
             <p>Price: $${item.price}</p>
             <p>Rating: ${item.rating}</p>
         `;
+
         itemElement.addEventListener("click", () => {
+            let vhistory = JSON.parse(localStorage.getItem('viewHistory')) || [];
+            const exists = vhistory.some(vitem => vitem.id === item.id);
+            
+            if (!exists) {
+                vhistory.push({
+                    id: item.id,
+                    time: Date.now()
+                });
+                localStorage.setItem('viewHistory', JSON.stringify(vhistory));
+            }
             window.location.href = `product.html?id=${item.id}`;
             
         });
